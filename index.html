@@ -13,6 +13,8 @@
 <h1>Aircraft Locations on Google Maps</h1>
 <div id="map"></div>
 <script>
+
+
   // Initialize the map
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -23,30 +25,26 @@
     // Fetch data and process
     const latitudeArray = [];
     const longitudeArray = [];
+    const icao24Array = [];
     fetch('first_aircraft_data.json')
             .then(response => response.json())
             .then(dataInitial => {
 
-
               // Arrays containing latitude and longitude values
-
-              // Add the latitude and longitude values ​​of each plane to the array
-
+              // Add the latitude and longitude values of each plane to the array
               dataInitial.forEach(aircraft => {
                 latitudeArray.push(aircraft.latitude);
                 longitudeArray.push(aircraft.longitude);
+                icao24Array.push(aircraft.icao24);
               });
 
               // Show results
-
               console.log("Latitude Array:", latitudeArray);
               console.log("Longitude Array:", longitudeArray);
             })
             .catch(error => {
               console.error('An error occurred while fetching data', error);
             });
-
-
 
     function fetchDataAndProcess() {
       fetch('aircraft_data.json')
@@ -65,6 +63,7 @@
                 // Process each aircraft data
                 data.forEach(aircraft => {
                   // Create marker for last location only
+                  
                   var marker = new google.maps.Marker({
                     position: {lat: aircraft.latitude, lng: aircraft.longitude},
                     map: map,
@@ -74,12 +73,13 @@
                       scaledSize: new google.maps.Size(40, 40), // Size of the icon
                     }
                   });
+
                   var contentString = `
                     <div>
                         <h2>${aircraft.callsign}</h2>
                         <p><b>Origin Country:</b> ${aircraft.origin_country}</p>
                         <p><b>Velocity:</b> ${aircraft.velocity} m/s</p>
-                        <p><b>True Track:</b> ${aircraft.true_track}Â°</p>
+                        <p><b>True Track:</b> ${aircraft.true_track}°</p>
                         <p><b>Vertical Rate:</b> ${aircraft.vertical_rate} m/s</p>
                     </div>
                 `;
@@ -91,36 +91,74 @@
                   // Add click event listener to marker to open info window
                   marker.addListener('click', function () {
                     infoWindow.open(map, marker);
+                    drawPath(aircraft);
                   });
 
                   // Push marker to markers array
                   markers.push(marker);
                 });
-
-                // Draw path from first to last location
-                if (data.length > 0) {
-                  var firstLocation = {lat: latitudeArray[0], lng: longitudeArray[0]};
-                  var lastLocation = {lat: data[0].latitude, lng: data[0].longitude};
-                  var path = new google.maps.Polyline({
-                    path: [firstLocation, lastLocation],
-                    geodesic: true,
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 1.0,
-                    strokeWeight: 2
-                  });
-                  path.setMap(map);
-                  paths.push(path);
-                }
               })
               .catch(error => {
                 console.error('Error fetching aircraft data:', error);
               });
     }
 
+    // Draw path function
+    // Draw path function
+    function drawPath(aircraft) {
+      // Clear existing paths for the specific aircraft
+      paths.forEach(path => {
+        if (path.aircraftICAO === aircraft.icao24) {
+          path.setMap(null);
+        }
+      });
+      paths = paths.filter(path => path.aircraftICAO !== aircraft.icao24);
+
+      var firstLocation, lastLocation;
+      for (var i = 0; i < icao24Array.length; i++) {
+        if (icao24Array[i] == aircraft.icao24) {
+          firstLocation = {lat: latitudeArray[i], lng: longitudeArray[i]};
+          lastLocation = {lat: aircraft.latitude, lng: aircraft.longitude};
+          break;
+        }
+      }
+
+      var path = new google.maps.Polyline({
+        path: [firstLocation, lastLocation],
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      });
+      path.aircraftICAO = aircraft.icao24; // Set the aircraft's ICAO for reference
+      path.setMap(map);
+      paths.push(path);
+
+      map.addListener('click', function () {
+        infoWindow.close();
+        clearPaths(aircraft.icao24); // Clear paths for the specific aircraft
+      });
+    }
+
+
+    // Clear markers and paths function
+    function clearPaths(icao) {
+      markers.forEach(marker => {
+        marker.setMap(null);
+      });
+      markers = markers.filter(marker => marker.aircraftICAO !== icao);
+      paths.forEach(path => {
+        if (path.aircraftICAO === icao) {
+          path.setMap(null);
+        }
+      });
+      paths = paths.filter(path => path.aircraftICAO !== icao);
+    }
+
+
     // Array to store markers and paths
     var markers = [];
     var paths = [];
-
 
     // Fetch data and process initially
     fetchDataAndProcess();
@@ -129,9 +167,9 @@
     setInterval(fetchDataAndProcess, 30000);
   }
 </script>
+
 <!-- Include the Google Maps API with your API key -->
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOM8r6gvpx3MvdvALICZ6FMbcU_DzeJI4&callback=initMap">
-</script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOM8r6gvpx3MvdvALICZ6FMbcU_DzeJI4&callback=initMap"></script>
 </body>
 </html>
