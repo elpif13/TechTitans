@@ -1,20 +1,20 @@
 # Description
-+This project integrates data from OpenSky to display information on a Google Map. It provides a visual representation of flight data overlaid on Google Maps for analysis and tracking purposes.
+_This project integrates data from OpenSky to display information on a Google Map. It provides a visual representation of flight data overlaid on Google Maps for analysis and tracking purposes.
 
 ## Features
-+Displays real-time flight data on Google Maps.
-+Shows the route and information of the flight.
-+Allows users to track specific flights by ID.
+_Displays real-time flight data on Google Maps.
+_Shows the route and information of the flight.
+_Allows users to track specific flights by ID.
 
 ## Technologies Used
-+React.js
-+Google Maps API
-+OpenSky API
-+HTML/CSS
+_React.js
+_Google Maps API
+_OpenSky API
+_HTML/CSS
 
 ## Credits
-+This project utilizes data from [OpenSky Network](https://opensky-network.org/).
-+Map data and services are provided by the [Google Maps Platform](https://developers.google.com/maps?hl=tr).
+_This project utilizes data from [OpenSky Network](https://opensky-network.org/).
+_Map data and services are provided by the [Google Maps Platform](https://developers.google.com/maps?hl=tr).
 
 
 :world_map: :globe_with_meridians: :airplane: :flight_arrival: 
