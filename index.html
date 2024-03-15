@@ -63,15 +63,23 @@
                 // Process each aircraft data
                 data.forEach(aircraft => {
                   // Create marker for last location only
-                  
+                  function createMarkerIcon(rotation) {
+                    return {
+                      path: 'M192 93.68C192 59.53 221 0 256 0C292 0 320 59.53 320 93.68V160L497.8 278.5C506.7 284.4 512 294.4 512 305.1V361.8C512 372.7 501.3 380.4 490.9 376.1L320 319.1V400L377.6 443.2C381.6 446.2 384 450.1 384 456V497.1C384 505.7 377.7 512 369.1 512C368.7 512 367.4 511.8 366.1 511.5L256 480L145.9 511.5C144.6 511.8 143.3 512 142 512C134.3 512 128 505.7 128 497.1V456C128 450.1 130.4 446.2 134.4 443.2L192 400V319.1L21.06 376.1C10.7 380.4 0 372.7 0 361.8V305.1C0 294.4 5.347 284.4 14.25 278.5L192 160L192 93.68z',
+                      fillColor: 'black', // Fill color of the arrow
+                      fillOpacity: 1, // Opacity of the fill
+                      scale: 0.05, // Scale of the icon
+                      strokeColor: 'white', // Stroke color of the arrow
+                      strokeWeight: 2, // Stroke weight of the arrow
+                      rotation: rotation, // Rotation angle in degrees
+                      anchor: new google.maps.Point(8, 10), // Anchor point of the icon
+                    };
+                  }
                   var marker = new google.maps.Marker({
                     position: {lat: aircraft.latitude, lng: aircraft.longitude},
                     map: map,
                     title: aircraft.callsign,
-                    icon: {
-                      url: 'https://images.vexels.com/media/users/3/242810/isolated/preview/faf4f5ad02d6d68cfeafa44e1b57649a-plane-semi-flat.png', // Arrow icon
-                      scaledSize: new google.maps.Size(40, 40), // Size of the icon
-                    }
+                    icon: createMarkerIcon(aircraft.true_track) // Set rotation based on true_track value
                   });
 
                   var contentString = `
