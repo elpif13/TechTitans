@@ -19,6 +19,7 @@
 
 :world_map: :globe_with_meridians: :airplane: :flight_arrival: 
 
+
 ![Ekran görüntüsü 2024-03-15 155321](https://github.com/elpif13/TechTitans/assets/113675207/0359a78d-fd17-4b7a-aa78-3dd64b787820)
 
 
