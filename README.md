@@ -14,7 +14,7 @@
 
 ## Tools
 - Build Otomation : PyBuilder
-- Unit Test : Python Unittest
+- Unit Test : PyUnit
 - Coverage : Coverage.py
 
 ## Credits
