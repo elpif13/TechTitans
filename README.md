@@ -20,7 +20,7 @@
 ## Credits
 - This project utilizes data from [OpenSky Network](https://opensky-network.org/).
 - Map data and services are provided by the [Google Maps Platform](https://developers.google.com/maps?hl=tr).
-- [ChatGPT](https://chat.openai.com/)
+- General Purpose [ChatGPT](https://chat.openai.com/)
 
 
 :world_map: :globe_with_meridians: :airplane: :flight_arrival: 
