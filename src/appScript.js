@@ -2,7 +2,7 @@
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
-        center: {lat: 26.8132, lng: 75.3153} // Default center (India)
+        center: {lat: 39, lng: 32} // Default center (Ankara)
     });
 
     // Fetch data and process
