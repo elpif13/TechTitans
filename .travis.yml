@@ -1,6 +1,8 @@
 language: python
 python:
-    - 3.9 
+    - 3.9
+install:
+  - pyb install_dependencies
 script:  
 - python build.py
 
