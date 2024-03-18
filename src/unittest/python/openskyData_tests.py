@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 import json
 import time
-from openskyData import collect_and_save_data
+from ./openskyData import collect_and_save_data
 
 class TestAircraftDataCollection(unittest.TestCase):
 
