@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.9"
-install:
-  - pip install -r build.py
-
+ - "3.9"
+script:
+ - python -m unittest src.unittest.python.openskyData_tests
+ 
