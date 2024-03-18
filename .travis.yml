@@ -2,5 +2,5 @@ language: python
 python:
  - "3.9"
 script:
- - python -m unittest src.unittest.python.openskyData_tests
+ - python src.main.python.openskyData.py
  
