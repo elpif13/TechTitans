@@ -3,7 +3,7 @@ python:
     - 3.9
     
 install: 
--python setup.py install
+-python setup.py 
 script:  
 - py.test src/unittest/python/openskyData_tests.py
 
