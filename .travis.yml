@@ -1,12 +1,5 @@
 language: python
 python:
   - "3.9"
+  
 
-install:
-  - pip install pybuilder
-  - pyb install_dependencies  # Use PyBuilder to install project dependencies
-
-script:
-  - pyb run_unit_tests  # Use PyBuilder to run unit tests
-
-# Optional: you can add additional configurations as needed, such as deployment steps, notifications, etc.
