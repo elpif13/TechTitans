@@ -1,9 +1,6 @@
 language: python
 python:
-    - 3.9
-    
-install: 
--python setup.py 
+    - 3.9 
 script:  
 - py.test src/unittest/python/openskyData_tests.py
 
