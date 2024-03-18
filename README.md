@@ -13,7 +13,7 @@
 - HTML/CSS
 
 ## Tools
-- Build Otomation : PyBuilder
+- Build Automation : PyBuilder
 - Unit Test : PyUnit
 - Coverage : Coverage.py
 
