@@ -2,5 +2,5 @@ language: python
 python:
     - 3.9 
 script:  
-- build.py
+- python build.py
 
