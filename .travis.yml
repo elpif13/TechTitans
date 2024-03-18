@@ -1,5 +1,9 @@
 language: python
 python:
-  - "3.9"
-script: make test  
+    - 3.9
+    
+install: 
+-python setup.py install
+script:  
+- py.test src/unittest/python/openskyData_tests.py
 
