@@ -16,6 +16,7 @@
 - Build Automation : PyBuilder
 - Unit Test : PyUnit
 - Coverage : Coverage.py
+- Conitinious Integration : Travis CI [![Build Status](https://app.travis-ci.com/elpif13/TechTitans.svg?token=apumSsCenTiWNgfBkpiU&branch=main)](https://app.travis-ci.com/elpif13/TechTitans)
 
 ## Credits
 - This project utilizes data from [OpenSky Network](https://opensky-network.org/).
