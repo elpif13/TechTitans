@@ -2,7 +2,16 @@
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
-        center: {lat: 39, lng: 32} // Default center (Ankara)
+        center: {lat: 39, lng: 32}, // Default center (Ankara)
+        restriction: {
+            latLngBounds: {
+                north: 85, // Kuzey sınırı
+                south: -85, // Güney sınırı
+                east: 180, // Doğu sınırı
+                west: -180 // Batı sınırı
+            },
+            strictBounds: true
+        }
     });
 
     // Fetch data and process
