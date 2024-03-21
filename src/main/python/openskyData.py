@@ -50,6 +50,8 @@ def helper_function():
                 json.dump(aircraft_data_first, f, indent=4)
                 print("First data saved successfully.")
                 first_data_received = True
+            with open("src/aircraft_data.json", "w") as f:
+                json.dump(aircraft_data_first, f, indent=4)
         else:
             with open("src/aircraft_data.json", "w") as f:
                 json.dump(aircraft_data_current, f, indent=4)
