@@ -28,8 +28,7 @@
 
 ![Ekran görüntüsü 2024-03-22 132124](https://github.com/elpif13/TechTitans/assets/113675207/e11f2138-30b2-4c2c-bce2-c5948f6af865)
 
-<img alt="Ekran görüntüsü 2024-03-22 122242" height="275" src="https://github.com/elpif13/TechTitans/assets/113675207/b2f75b36-8a0d-41c5-bac5-13ed0e734c17" width="525"/>
-
+![Screenshot 2024-03-22 184112](https://github.com/elpif13/TechTitans/assets/81524733/30d07e26-344e-409e-bd3b-b71ee09871aa)
 
 
 
