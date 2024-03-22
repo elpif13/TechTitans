@@ -21,11 +21,12 @@
 
 ## Credits
 - This project utilizes data from [OpenSky Network](https://opensky-network.org/).
-![image](https://github.com/elpif13/TechTitans/assets/113675207/6b5130bf-b1fc-4eeb-8656-e0968b8d3a65)
 - General Purpose [ChatGPT](https://chat.openai.com/).
 
 
 :world_map: :globe_with_meridians: :airplane: :flight_arrival: 
+
+![image](https://github.com/elpif13/TechTitans/assets/113675207/6b5130bf-b1fc-4eeb-8656-e0968b8d3a65)
 
 ![Ekran görüntüsü 2024-03-22 221551](https://github.com/elpif13/TechTitans/assets/113675207/32e8e49f-2070-4558-ad43-5347397aa040)
 
