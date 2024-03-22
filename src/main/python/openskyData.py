@@ -25,8 +25,6 @@ def helper_function():
                         "velocity": state.velocity,
                         "true_track": state.true_track,
                         "vertical_rate": state.vertical_rate,
-                        "time_position": state.time_position,
-                        "last_contact": state.last_contact,
                         "on_ground": state.on_ground
                             })
                 else:
@@ -39,8 +37,6 @@ def helper_function():
                         "velocity": state.velocity,
                         "true_track": state.true_track,
                         "vertical_rate": state.vertical_rate,
-                        "time_position": state.time_position,
-                        "last_contact": state.last_contact,
                         "on_ground": state.on_ground
                             })
 
