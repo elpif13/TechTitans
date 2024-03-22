@@ -21,18 +21,18 @@
 
 ## Credits
 - This project utilizes data from [OpenSky Network](https://opensky-network.org/).
+- Map data and services are provided by the [Google Maps Platform](https://developers.google.com/maps?hl=tr).
 - General Purpose [ChatGPT](https://chat.openai.com/).
 
 
 :world_map: :globe_with_meridians: :airplane: :flight_arrival: 
 
-![image](https://github.com/elpif13/TechTitans/assets/113675207/6b5130bf-b1fc-4eeb-8656-e0968b8d3a65)
+![Ekran görüntüsü 2024-03-22 221551](https://github.com/elpif13/TechTitans/assets/113675207/36fa0b2e-c71d-4fb3-b795-96243a4f72ab)
+![Ekran görüntüsü 2024-03-22 221425](https://github.com/elpif13/TechTitans/assets/113675207/d221b666-0f43-449b-8adc-58fdc4aa55d8)
+![Ekran görüntüsü 2024-03-22 222130](https://github.com/elpif13/TechTitans/assets/113675207/74094c28-3f2e-4933-973e-67f80faf83e0)
 
-![Ekran görüntüsü 2024-03-22 221551](https://github.com/elpif13/TechTitans/assets/113675207/32e8e49f-2070-4558-ad43-5347397aa040)
 
-![Screenshot 2024-03-22 184112](https://github.com/elpif13/TechTitans/assets/81524733/30d07e26-344e-409e-bd3b-b71ee09871aa)
 
-![image](https://github.com/elpif13/TechTitans/assets/113675207/c0c4844d-88bb-49c5-b2b9-febb2cd82f62)
 
 
 
