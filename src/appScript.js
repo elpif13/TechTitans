@@ -15,8 +15,8 @@ function initMap() {
     });
 
     // Fetch data and process
-    const latitudeArray = [];
-    const longitudeArray = [];
+    let latitudes = {};
+    let longitudes = {};
     const icao24Array = [];
     fetch('first_aircraft_data.json')
         .then(response => response.json())
@@ -25,9 +25,14 @@ function initMap() {
             // Arrays containing latitude and longitude values
             // Add the latitude and longitude values of each plane to the array
             dataInitial.forEach(aircraft => {
-                latitudeArray.push(aircraft.latitude);
-                longitudeArray.push(aircraft.longitude);
+                latitudes[aircraft.icao24] = [];
+                longitudes[aircraft.icao24] = [];
                 icao24Array.push(aircraft.icao24);
+            });
+
+            dataInitial.forEach(aircraft => {
+                latitudes[aircraft.icao24].push(aircraft.latitude);
+                longitudes[aircraft.icao24].push(aircraft.longitude);
             });
 
             // Show results
@@ -55,6 +60,18 @@ function initMap() {
                 // Process each aircraft data
                 data.forEach(aircraft => {
                     // Create marker for last location only
+                    if (!icao24Array.includes(aircraft.icao24)) {
+                        // Yeni uçak icao24 kodunu icao24Array'e ekleyin
+                        icao24Array.push(aircraft.icao24);
+                        // Yeni uçak için latitudes ve longitudes dizilerini oluşturun
+                        latitudes[aircraft.icao24] = [aircraft.latitude];
+                        longitudes[aircraft.icao24] = [aircraft.longitude];
+                    } else {
+                        // Daha önce var olan uçak için latitudes ve longitudes dizilerini güncelleyin
+                        latitudes[aircraft.icao24].push(aircraft.latitude);
+                        longitudes[aircraft.icao24].push(aircraft.longitude);
+                    }
+
                     function createMarkerIcon(rotation) {
                         return {
                             path: 'M192 93.68C192 59.53 221 0 256 0C292 0 320 59.53 320 93.68V160L497.8 278.5C506.7 284.4 512 294.4 512 305.1V361.8C512 372.7 501.3 380.4 490.9 376.1L320 319.1V400L377.6 443.2C381.6 446.2 384 450.1 384 456V497.1C384 505.7 377.7 512 369.1 512C368.7 512 367.4 511.8 366.1 511.5L256 480L145.9 511.5C144.6 511.8 143.3 512 142 512C134.3 512 128 505.7 128 497.1V456C128 450.1 130.4 446.2 134.4 443.2L192 400V319.1L21.06 376.1C10.7 380.4 0 372.7 0 361.8V305.1C0 294.4 5.347 284.4 14.25 278.5L192 160L192 93.68z',
@@ -64,7 +81,7 @@ function initMap() {
                             strokeColor: 'white', // Stroke color of the arrow
                             strokeWeight: 2, // Stroke weight of the arrow
                             rotation: rotation, // Rotation angle in degrees
-                            anchor: new google.maps.Point(8, 10), // Anchor point of the icon
+                            anchor: new google.maps.Point(250, 256), // Anchor point of the icon (middle top)
                         };
                     }
 
@@ -115,17 +132,19 @@ function initMap() {
         });
         paths = paths.filter(path => path.aircraftICAO !== aircraft.icao24);
 
-        var firstLocation, lastLocation;
-        for (var i = 0; i < icao24Array.length; i++) {
+        const locations = [];
+        for (let i = 0; i < icao24Array.length; i++) {
             if (icao24Array[i] == aircraft.icao24) {
-                firstLocation = {lat: latitudeArray[i], lng: longitudeArray[i]};
-                lastLocation = {lat: aircraft.latitude, lng: aircraft.longitude};
+                // Assuming latitudes and longitudes are populated correctly
+                for (let j = 0; j < latitudes[aircraft.icao24].length; j++) {
+                    locations.push({ lat: latitudes[aircraft.icao24][j], lng: longitudes[aircraft.icao24][j] });
+                }
                 break;
             }
         }
 
         var path = new google.maps.Polyline({
-            path: [firstLocation, lastLocation],
+            path: locations,
             geodesic: true,
             strokeColor: '#FF0000',
             strokeOpacity: 1.0,
@@ -140,6 +159,7 @@ function initMap() {
             clearPaths(aircraft.icao24); // Clear paths for the specific aircraft
         });
     }
+
 
 
     // Clear markers and paths function
