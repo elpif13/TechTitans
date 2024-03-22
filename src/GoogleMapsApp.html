@@ -15,8 +15,9 @@
             border: 2px solid #333;
             padding: 5px;
             background-color: #f8f8f8;
-            font-size: 12px;
-            width: 200px;
+            font-size: 16px;
+            width: 375px;
+            height: 30px;
             border-radius: 3px;
             box-shadow: 0 1px 3px rgba(0,0,0,.3);
         }
@@ -30,9 +31,28 @@
             box-shadow: 0 1px 3px rgba(0,0,0,.2);
         }
         .ui-autocomplete {
-            max-height: 200px; /* Adjust this value as needed */
+            max-height: 200px;
             overflow-y: auto;
             overflow-x: hidden;
+            padding-right: 5px;
+            border: 1px solid #c5c5c5;
+            background-color: #f9f9f9;
+        }
+        .ui-menu-item {
+            color: #333;
+            padding: 5px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .ui-menu-item:last-child {
+            border-bottom: none;
+        }
+        .ui-menu-item:hover {
+            background-color: #f1f1f1;
+        }
+        .ui-menu-item.ui-state-focus {
+            background-color: transparent !important;
         }
     </style>
 </head>

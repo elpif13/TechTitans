@@ -92,6 +92,13 @@ function initMap() {
                             // Trigger a click event on the marker to open the infobox
                             new google.maps.event.trigger(selectedMarker, 'click');
                         }
+                    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+                        return $( "<li>" )
+                            .append( "<div><img src='aircraft.png' style='height: 16px; width: 16px; margin-right: 10px;'/>" + item.label + "</div>" )
+                            .appendTo( ul );
+                    };
+                    $("#search-box").css({
+                        'border-radius': '10px' // Adjust this value to change the roundness of the borders
                     });
 
                     function createMarkerIcon(rotation) {
