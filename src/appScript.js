@@ -5,10 +5,10 @@ function initMap() {
         center: {lat: 39, lng: 32}, // Default center (Ankara)
         restriction: {
             latLngBounds: {
-                north: 85, // Kuzey sınırı
-                south: -85, // Güney sınırı
-                east: 180, // Doğu sınırı
-                west: -180 // Batı sınırı
+                north: 85, // northern border
+                south: -85, // southern border
+                east: 180, // eastern border
+                west: -180 // western border
             },
             strictBounds: true
         }
@@ -61,13 +61,13 @@ function initMap() {
                 data.forEach(aircraft => {
                     // Create marker for last location only
                     if (!icao24Array.includes(aircraft.icao24)) {
-                        // Yeni uçak icao24 kodunu icao24Array'e ekleyin
+                        // Add new aircraft icao24 code to icao24Array
                         icao24Array.push(aircraft.icao24);
-                        // Yeni uçak için latitudes ve longitudes dizilerini oluşturun
+                        // Create latitudes and longitudes arrays for new aircraft
                         latitudes[aircraft.icao24] = [aircraft.latitude];
                         longitudes[aircraft.icao24] = [aircraft.longitude];
                     } else {
-                        // Daha önce var olan uçak için latitudes ve longitudes dizilerini güncelleyin
+                        // Update latitudes and longitudes arrays for previously existing aircraft
                         latitudes[aircraft.icao24].push(aircraft.latitude);
                         longitudes[aircraft.icao24].push(aircraft.longitude);
                     }
