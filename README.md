@@ -21,7 +21,7 @@
 
 ## Credits
 - This project utilizes data from [OpenSky Network](https://opensky-network.org/).
-- Map data and services are provided by the [Google Maps Platform](https://developers.google.com/maps?hl=tr).
+![image](https://github.com/elpif13/TechTitans/assets/113675207/6b5130bf-b1fc-4eeb-8656-e0968b8d3a65)
 - General Purpose [ChatGPT](https://chat.openai.com/).
 
 
