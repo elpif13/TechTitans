@@ -72,6 +72,28 @@ function initMap() {
                         longitudes[aircraft.icao24].push(aircraft.longitude);
                     }
 
+                    // Update the aircraftCallsigns array
+                    aircraftCallsigns = data.map(aircraft => aircraft.callsign);
+
+                    // Initialize the autocomplete search box
+                    $("#search-box").autocomplete({
+                        source: aircraftCallsigns,
+                        select: function(event, ui) {
+                            // Find the selected aircraft
+                            var selectedAircraft = data.find(aircraft => aircraft.callsign === ui.item.value);
+
+                            // Zoom to the selected aircraft
+                            map.setZoom(8);
+                            map.setCenter(new google.maps.LatLng(selectedAircraft.latitude, selectedAircraft.longitude));
+
+                            // Find the marker for the selected aircraft
+                            var selectedMarker = markers.find(marker => marker.title === selectedAircraft.callsign);
+
+                            // Trigger a click event on the marker to open the infobox
+                            new google.maps.event.trigger(selectedMarker, 'click');
+                        }
+                    });
+
                     function createMarkerIcon(rotation) {
                         return {
                             path: 'M192 93.68C192 59.53 221 0 256 0C292 0 320 59.53 320 93.68V160L497.8 278.5C506.7 284.4 512 294.4 512 305.1V361.8C512 372.7 501.3 380.4 490.9 376.1L320 319.1V400L377.6 443.2C381.6 446.2 384 450.1 384 456V497.1C384 505.7 377.7 512 369.1 512C368.7 512 367.4 511.8 366.1 511.5L256 480L145.9 511.5C144.6 511.8 143.3 512 142 512C134.3 512 128 505.7 128 497.1V456C128 450.1 130.4 446.2 134.4 443.2L192 400V319.1L21.06 376.1C10.7 380.4 0 372.7 0 361.8V305.1C0 294.4 5.347 284.4 14.25 278.5L192 160L192 93.68z',
@@ -93,14 +115,14 @@ function initMap() {
                     });
 
                     var contentString = `
-                    <div>
-                        <h2>${aircraft.callsign}</h2>
-                        <p><b>Origin Country:</b> ${aircraft.origin_country}</p>
-                        <p><b>Velocity:</b> ${aircraft.velocity} m/s</p>
-                        <p><b>True Track:</b> ${aircraft.true_track}°</p>
-                        <p><b>Vertical Rate:</b> ${aircraft.vertical_rate} m/s</p>
-                    </div>
-                `;
+                        <div class="info-box">
+                            <h2>${aircraft.callsign}</h2>
+                            <p><b>Origin Country:</b> ${aircraft.origin_country}</p>
+                            <p><b>Velocity:</b> ${aircraft.velocity} m/s</p>
+                            <p><b>True Track:</b> ${aircraft.true_track}°</p>
+                            <p><b>Vertical Rate:</b> ${aircraft.vertical_rate} m/s</p>
+                        </div>
+                    `;
 
                     var infoWindow = new google.maps.InfoWindow({
                         content: contentString
@@ -175,11 +197,12 @@ function initMap() {
         });
         paths = paths.filter(path => path.aircraftICAO !== icao);
     }
-
-
     // Array to store markers and paths
     var markers = [];
     var paths = [];
+
+    // Array to store aircraft callsigns
+    var aircraftCallsigns = [];
 
     // Fetch data and process initially
     fetchDataAndProcess();
