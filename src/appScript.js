@@ -83,7 +83,7 @@ function initMap() {
                             var selectedAircraft = data.find(aircraft => aircraft.callsign === ui.item.value);
 
                             // Zoom to the selected aircraft
-                            map.setZoom(8);
+                            map.setZoom(10);
                             map.setCenter(new google.maps.LatLng(selectedAircraft.latitude, selectedAircraft.longitude));
 
                             // Find the marker for the selected aircraft
@@ -122,12 +122,13 @@ function initMap() {
                     });
 
                     var contentString = `
-                        <div class="info-box">
-                            <h2>${aircraft.callsign}</h2>
-                            <p><b>Origin Country:</b> ${aircraft.origin_country}</p>
-                            <p><b>Velocity:</b> ${aircraft.velocity} m/s</p>
-                            <p><b>True Track:</b> ${aircraft.true_track}°</p>
-                            <p><b>Vertical Rate:</b> ${aircraft.vertical_rate} m/s</p>
+                        <div class="info-box" style="background-color: #f8f8f8; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,.3);">
+                            <h2 style="margin: 0; color: #333; font-size: 18px;">${aircraft.callsign}</h2>
+                            <hr style="border: none; border-top: 1px solid #ddd;">
+                            <p style="margin: 5px 0;"><b>Origin Country:</b> ${aircraft.origin_country}</p>
+                            <p style="margin: 5px 0;"><b>Velocity:</b> ${aircraft.velocity} m/s</p>
+                            <p style="margin: 5px 0;"><b>True Track:</b> ${aircraft.true_track}°</p>
+                            <p style="margin: 5px 0;"><b>Vertical Rate:</b> ${aircraft.vertical_rate} m/s</p>
                         </div>
                     `;
 
@@ -139,6 +140,9 @@ function initMap() {
                     marker.addListener('click', function () {
                         infoWindow.open(map, marker);
                         drawPath(aircraft);
+                        this.setAnimation(google.maps.Animation.BOUNCE); // Add bounce animation
+                        // Stop the animation after 2 bounces (approx. 1400ms)
+                        setTimeout(() => { this.setAnimation(null); }, 1400);
                     });
 
                     // Push marker to markers array
